@@ -1,0 +1,22 @@
+[
+  {
+    "id_curso": 1,
+    "nome": "Administração",
+    "descricao": "Curso de gestão e negócios"
+  },
+  {
+    "id_curso": 2,
+    "nome": "Informatica",
+    "descricao": "Tecnologia e desenvolvimento de sistemas"
+  },
+  {
+    "id_curso": 2,
+    "nome": "Sistemas de Informação",
+    "descricao": "Tecnologia e desenvolvimento de sistemas"
+  },
+  {
+    "id_curso": 3,
+    "nome": "Engenharia de Produção",
+    "descricao": "Processos industriais e otimização"
+  }
+]
