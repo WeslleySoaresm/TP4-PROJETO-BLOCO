@@ -1,5 +1,7 @@
 # 📘 TP4 Projeto de Bloco (2025)
-
+<p align="center">
+<img src="https://www.python.org/static/community_logos/python-logo.png" width="300" alt="Python Logo" />
+</p>
 ## 🇧🇷 Português
 
 ### 📌 Descrição
