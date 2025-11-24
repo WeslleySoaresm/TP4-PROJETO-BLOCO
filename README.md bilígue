@@ -1,50 +1,57 @@
+# 📘 README – TP4 Projeto de Bloco (2025)
 
-
-´´´
-# 🚀 TP4 – Projeto de Bloco (2025)
+<p align="center">
+  <img src="https://www.python.org/static/community_logos/python-logo.png" width="300" alt="Python Logo" />
+</p>
 
 ## 🇧🇷 Português
 
 ### 📌 Descrição
-Este projeto foi desenvolvido como parte do **TP4 – Projeto de Bloco (2025)**.  
-O objetivo é manipular dados em um banco de dados **PostgreSQL** utilizando **Python** e **SQLAlchemy**, realizando operações de:
 
-- 🔄 **UPSERT** → Inserção/Atualização em lote  
-- ❌ **Deleção massiva** → Remoção de registros em lote  
-
-Tudo a partir de arquivos **JSON** orientados a registros.
+Este projeto foi desenvolvido como parte do **TP4 – Projeto de Bloco (2025)**.
+O objetivo é manipular dados em um banco de dados **PostgreSQL** utilizando **Python** e **SQLAlchemy**, realizando operações de **UPSERT** (inserção/atualização) e **deleção massiva** a partir de arquivos JSON.
 
 ---
 
 ### 🎯 Orientações do TP4
-1️⃣ Criar um arquivo JSON para carga massiva (inserção/atualização).  
-2️⃣ Criar um arquivo JSON para deleção massiva.  
-3️⃣ Implementar código em Python com SQLAlchemy para UPSERT.  
-4️⃣ Validar inserção/atualização no banco.  
-5️⃣ Repetir o processo para deleção massiva.  
-6️⃣ Validar a deleção no banco.  
+
+1. Criar um arquivo JSON com orientação a registros para carga massiva (inserção ou atualização) de uma tabela no PostgreSQL.
+2. Criar um arquivo JSON com orientação a registros para deleção massiva.
+3. Implementar código em Python usando SQLAlchemy para realizar UPSERT (INSERT + UPDATE).
+4. Validar o sucesso da inserção/atualização.
+5. Repetir o processo para deleção massiva.
+6. Validar o sucesso da deleção.
 
 ---
 
 ### ⚙️ Estrutura do Projeto
-📂 **Arquivos principais:**
-- `alunos.json` → registros para inserção/atualização  
-- `alunos_deletar.json` → registros para deleção  
-- `db_conect.py` → conexão ao banco + funções (`upsert_aluno`, `delete_alunos`)  
-- `main.py` → script principal que chama as funções  
+
+* **`alunos.json`** → arquivo com registros para inserção/atualização.
+* **`alunos_deletar.json`** → arquivo com registros para deleção.
+* **`db_conect.py`** → módulo de conexão ao banco e funções (`upsert_aluno`, `delete_alunos`).
+* **`main.py`** → script principal que chama as funções e executa as operações.
 
 ---
 
 ### 🚀 Como Executar
+
+1. Configure o banco PostgreSQL e crie a tabela `academic.aluno`.
+2. Ajuste as credenciais no dicionário `DB` em `db_conect.py`.
+3. Crie os arquivos `alunos.json` e `alunos_deletar.json`.
+4. Execute o script principal:
+
 ```bash
-# Executar o script principal
 python3 main.py
 ```
+
+5. Verifique no banco se os registros foram inseridos/atualizados ou deletados.
 
 ---
 
 ### 📂 Exemplo de JSON
+
 **Inserção/Atualização (`alunos.json`):**
+
 ```json
 [
   { "cpf": "11111111111", "nome": "Ana Silva", "datanascimento": "2001-05-10" },
@@ -53,6 +60,7 @@ python3 main.py
 ```
 
 **Deleção (`alunos_deletar.json`):**
+
 ```json
 [
   { "cpf": "11111111111" },
@@ -63,15 +71,23 @@ python3 main.py
 ---
 
 ### 🔄 Fluxo do Projeto
-```
-📄 alunos.json ──▶ 📊 Pandas DataFrame ──▶ 🔄 upsert_aluno() ──▶ 🗄️ PostgreSQL (academic.aluno)
 
-📄 alunos_deletar.json ──▶ 📊 Pandas DataFrame ──▶ ❌ delete_alunos() ──▶ 🗄️ PostgreSQL (academic.aluno)
+```
++-------------------+        +------------------+        +-------------------+        +------------------+
+|   alunos.json     | -----> | Pandas DataFrame | -----> |  upsert_aluno()   | -----> |  PostgreSQL DB   |
+| (inserção/atual.) |        |       (df)       |        | (SQLAlchemy UPSERT)|       | academic.aluno   |
++-------------------+        +------------------+        +-------------------+        +------------------+
+
++--------------------+       +------------------+        +-------------------+        +------------------+
+| alunos_deletar.json| -----> | Pandas DataFrame | -----> | delete_alunos()   | -----> |  PostgreSQL DB   |
+| (deleção massiva)  |        |    (df_delete)   |        | (SQLAlchemy DELETE)|       | academic.aluno   |
++--------------------+       +------------------+        +-------------------+        +------------------+
 ```
 
 ---
 
-### 📜 Exemplo de Log de Execução
+### 📜 Exemplo de Log de Execução (Python)
+
 ```bash
 weslleysoares@Mac TP4-PROJETO-BLOCO % python3 main.py
 conexão bem sucedida.
@@ -85,45 +101,51 @@ Deletado com Sucesso
 ## 🇺🇸 English
 
 ### 📌 Description
-This project was developed as part of **TP4 – Block Project (2025)**.  
-The goal is to manipulate data in a **PostgreSQL** database using **Python** and **SQLAlchemy**, performing:
 
-- 🔄 **UPSERT** → Bulk insert/update  
-- ❌ **Mass deletion** → Bulk removal of records  
-
-All operations are based on **record-oriented JSON files**.
+This project was developed as part of **TP4 – Block Project (2025)**.
+The goal is to manipulate data in a **PostgreSQL** database using **Python** and **SQLAlchemy**, performing **UPSERT** (insert/update) and **mass deletion** operations from JSON files.
 
 ---
 
 ### 🎯 TP4 Guidelines
-1️⃣ Create a JSON file for bulk insert/update.  
-2️⃣ Create a JSON file for bulk deletion.  
-3️⃣ Implement Python code with SQLAlchemy for UPSERT.  
-4️⃣ Validate insert/update in the database.  
-5️⃣ Repeat the process for mass deletion.  
-6️⃣ Validate deletion in the database.  
+
+1. Create a JSON file with record-oriented structure for bulk insert/update.
+2. Create a JSON file for bulk deletion.
+3. Implement Python code using SQLAlchemy to perform an UPSERT (INSERT + UPDATE).
+4. Validate successful insertion/update.
+5. Perform the mass deletion process.
+6. Validate the deletion success.
 
 ---
 
 ### ⚙️ Project Structure
-📂 **Main files:**
-- `alunos.json` → records for insert/update  
-- `alunos_deletar.json` → records for deletion  
-- `db_conect.py` → database connection + functions (`upsert_aluno`, `delete_alunos`)  
-- `main.py` → main script that calls the functions  
+
+* **`alunos.json`** → file with records for insert/update.
+* **`alunos_deletar.json`** → file with records for deletion.
+* **`db_conect.py`** → database connection and functions (`upsert_aluno`, `delete_alunos`).
+* **`main.py`** → main script that executes the operations.
 
 ---
 
 ### 🚀 How to Run
+
+1. Set up PostgreSQL and create the `academic.aluno` table.
+2. Adjust credentials in the `DB` dictionary inside `db_conect.py`.
+3. Create the files `alunos.json` and `alunos_deletar.json`.
+4. Execute:
+
 ```bash
-# Run the main script
 python3 main.py
 ```
+
+5. Check the database to confirm the records were inserted/updated or deleted.
 
 ---
 
 ### 📂 JSON Example
+
 **Insert/Update (`alunos.json`):**
+
 ```json
 [
   { "cpf": "11111111111", "nome": "Ana Silva", "datanascimento": "2001-05-10" },
@@ -132,6 +154,7 @@ python3 main.py
 ```
 
 **Deletion (`alunos_deletar.json`):**
+
 ```json
 [
   { "cpf": "11111111111" },
@@ -142,15 +165,23 @@ python3 main.py
 ---
 
 ### 🔄 Project Flow
-```
-📄 alunos.json ──▶ 📊 Pandas DataFrame ──▶ 🔄 upsert_aluno() ──▶ 🗄️ PostgreSQL (academic.aluno)
 
-📄 alunos_deletar.json ──▶ 📊 Pandas DataFrame ──▶ ❌ delete_alunos() ──▶ 🗄️ PostgreSQL (academic.aluno)
+```
++-------------------+        +------------------+        +-------------------+        +------------------+
+|   alunos.json     | -----> | Pandas DataFrame | -----> |  upsert_aluno()   | -----> |  PostgreSQL DB   |
+| (insert/update)   |        |       (df)       |        | (SQLAlchemy UPSERT)|       | academic.aluno   |
++-------------------+        +------------------+        +-------------------+        +------------------+
+
++--------------------+       +------------------+        +-------------------+        +------------------+
+| alunos_deletar.json| -----> | Pandas DataFrame | -----> | delete_alunos()   | -----> |  PostgreSQL DB   |
+| (mass deletion)    |        |    (df_delete)   |        | (SQLAlchemy DELETE)|       | academic.aluno   |
++--------------------+       +------------------+        +-------------------+        +------------------+
 ```
 
 ---
 
 ### 📜 Example Python Execution Log
+
 ```bash
 weslleysoares@Mac TP4-PROJETO-BLOCO % python3 main.py
 connection successful.
@@ -158,6 +189,3 @@ UPSERT COMPLETED SUCCESSFULLY!
 Deleted records: 2
 Deletion Successful
 ```
-```
-
----
