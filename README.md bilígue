@@ -1,7 +1,9 @@
 
 
-```markdown
-# 📘 TP4 Projeto de Bloco (2025)
+---
+
+
+# 📘  TP4 Projeto de Bloco (2025)
 
 ## 🇧🇷 Português
 
@@ -144,6 +146,4 @@ The goal is to manipulate data in a **PostgreSQL** database using **Python** and
 | (mass deletion)   |        |   (df_delete)    |        |  (SQLAlchemy DELETE)|       | academic.aluno   |
 +-------------------+        +------------------+        +-------------------+        +------------------+
 ```
-```
 
----
